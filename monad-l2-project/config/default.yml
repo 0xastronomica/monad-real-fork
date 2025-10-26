@@ -1,0 +1,18 @@
+default:
+  network: "mainnet"
+  rpcUrl: "https://rpc.monad.network"
+  gasLimit: 8000000
+  gasPrice: 1000000000
+  contractAddress: "0xYourContractAddress"
+  sequencer:
+    maxQueueSize: 1000
+    processingInterval: 500
+  prover:
+    proofType: "zkSNARK"
+    proofVerificationTimeout: 3000
+  relayer:
+    retryAttempts: 5
+    retryDelay: 2000
+  client:
+    timeout: 10000
+    maxRetries: 3
