@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package monadl2;
+
+message Transaction {
+    string id = 1;
+    string sender = 2;
+    string receiver = 3;
+    double amount = 4;
+    string timestamp = 5;
+}
+
+message Proof {
+    string transaction_id = 1;
+    bytes proof_data = 2;
+}
+
+message TransactionStatus {
+    string transaction_id = 1;
+    string status = 2;
+    string message = 3;
+}
+
+message RelayMessage {
+    Transaction transaction = 1;
+    string action = 2; // "send" or "receive"
+}

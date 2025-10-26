@@ -1,0 +1,46 @@
+# Integration tests for the Monad L2 solution
+
+import { Sequencer } from '../../src/sequencer/index';
+import { Prover } from '../../src/prover/index';
+import { Relayer } from '../../src/relayer/index';
+import { Client } from '../../src/client/index';
+
+describe('Integration Tests for Monad L2 Solution', () => {
+    let sequencer: Sequencer;
+    let prover: Prover;
+    let relayer: Relayer;
+    let client: Client;
+
+    beforeAll(() => {
+        sequencer = new Sequencer();
+        prover = new Prover();
+        relayer = new Relayer();
+        client = new Client();
+    });
+
+    test('should enqueue and process a transaction', () => {
+        const transaction = { id: 1, data: 'test transaction' };
+        sequencer.enqueueTransaction(transaction);
+        expect(sequencer.processQueue()).toBeTruthy();
+    });
+
+    test('should generate and verify a proof', () => {
+        const transaction = { id: 2, data: 'test transaction for proof' };
+        const proof = prover.generateProof(transaction);
+        expect(prover.verifyProof(transaction, proof)).toBeTruthy();
+    });
+
+    test('should send and receive a transaction', async () => {
+        const transaction = { id: 3, data: 'test transaction for relayer' };
+        await relayer.sendTransaction(transaction);
+        const receivedTransaction = await relayer.receiveTransaction(transaction.id);
+        expect(receivedTransaction).toEqual(transaction);
+    });
+
+    test('should submit a transaction and get its status', async () => {
+        const transaction = { id: 4, data: 'test transaction for client' };
+        await client.submitTransaction(transaction);
+        const status = await client.getTransactionStatus(transaction.id);
+        expect(status).toBe('pending');
+    });
+});

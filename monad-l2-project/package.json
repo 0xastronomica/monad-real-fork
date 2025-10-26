@@ -1,0 +1,36 @@
+{
+  "name": "monad-l2-project",
+  "version": "1.0.0",
+  "description": "L2 solution for the Monad blockchain.",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/client/index.js",
+    "test": "jest",
+    "build": "tsc",
+    "deploy": "bash scripts/deploy.sh",
+    "start-local": "bash scripts/start-local.sh"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/monad-l2-project.git"
+  },
+  "keywords": [
+    "monad",
+    "l2",
+    "blockchain",
+    "typescript"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "dependencies": {
+    "typescript": "^4.5.4",
+    "jest": "^27.0.6",
+    "protobufjs": "^6.11.2"
+  },
+  "devDependencies": {
+    "@types/jest": "^27.0.2",
+    "@typescript-eslint/eslint-plugin": "^5.0.0",
+    "@typescript-eslint/parser": "^5.0.0",
+    "eslint": "^7.32.0"
+  }
+}
